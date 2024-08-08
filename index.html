@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Page</title>
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        /* Custom Styles */
+        body {
+            background: url('background-image.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            transition: background-color 0.5s ease;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: linear-gradient(90deg, rgba(78, 140, 255, 0.9) 0%, rgba(98, 182, 255, 0.9) 100%);
+        }
+
+        .navbar-brand,
+        .nav-link {
+            color: #fff !important;
+        }
+
+        .navbar-brand:hover,
+        .nav-link:hover {
+            color: #e2e2e2 !important;
+        }
+
+        .navbar-nav .nav-item {
+            margin-left: 1rem;
+        }
+
+        .navbar-toggler {
+            border: none;
+        }
+
+        /* Jumbotron */
+        .jumbotron-custom {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(227, 242, 253, 0.8) 100%);
+            color: #333;
+            text-align: center;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .jumbotron-custom h1,
+        .jumbotron-custom p {
+            color: #333;
+            transition: color 0.5s ease;
+        }
+
+        .jumbotron-custom .content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .jumbotron-custom .dynamic-button {
+            cursor: pointer;
+            color: #007bff;
+            text-decoration: underline;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .jumbotron-custom .dynamic-button:hover {
+            color: #0056b3;
+            transform: scale(1.1);
+        }
+
+        /* Teacher Section */
+        .teacher-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .teacher-card img {
+            border-radius: 50%;
+            max-width: 120px;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .teacher-card:hover {
+            transform: scale(1.05) rotate(2deg);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+        }
+
+        .teacher-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .teacher-details {
+            display: none;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: #f1f1f1;
+            padding: 15px;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .teacher-card:hover .teacher-details {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .teacher-card .teacher-details {
+            transform: translateY(100%);
+        }
+
+        /* Forms */
+        .contact-form {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-form h2 {
+            margin-bottom: 20px;
+        }
+
+        .optional-field {
+            display: none;
+        }
+
+        #more-info:checked~.optional-field {
+            display: block;
+            margin-top: 10px;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .navbar-brand {
+                font-size: 1.25rem;
+            }
+
+            .jumbotron-custom {
+                padding: 2rem;
+            }
+
+            .teacher-card {
+                padding: 15px;
+            }
+
+            .teacher-card img {
+                max-width: 100px;
+            }
+
+            .contact-form {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="#"><i class="bi bi-house-door"></i> Faculty Page</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#"><i class="bi bi-house-door"></i> Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#teachers"><i class="bi bi-person-bounding-box"></i> Our Faculty</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#contact"><i class="bi bi-envelope-open"></i> Contact Us</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Jumbotron -->
+    <div class="container">
+        <div class="jumbotron jumbotron-custom">
+            <div class="content">
+                <h1 class="display-4" id="jumbotron-heading">Welcome to Our Faculty Page!</h1>
+                <p class="lead" id="jumbotron-text">Discover the expertise and dedication of our esteemed faculty members.</p>
+                <hr class="my-4">
+                <span class="dynamic-button" onclick="changeHeading()">Click to Change Heading</span>
+                <br>
+                <span class="dynamic-button" onclick="changeTextFont()">Click to Change Text Font</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Teacher Section -->
+    <div class="container" id="teachers">
+        <div class="row">
+            <div class="col-md-4 col-sm-6 mb-4">
+                <div class="teacher-card">
+                    <img src="Jyotsna_mam.png" alt="Jyotsna More">
+                    <h3>Jyotsna More</h3>
+                    <h4>Assistant Professor</h4>
+                    <div class="teacher-details">
+                        <p>M.E, Computer Engineering, TSEC, Bandra, 2012<br>
+                            B.E. Information Technology, VCET, Vasai, 2006
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6 mb-4">
+                <div class="teacher-card">
+                    <img src="Martina_mam.png" alt="Martina D'souza">
+                    <h3>Martina D'souza</h3>
+                    <h4>Assistant Professor</h4>
+                    <div class="teacher-details">
+                        <p>ME Computer Engg, 2014, TSEC Bandra<br>
+                            BE IT, 2007, SFIT, Borivli
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-12 mb-4">
+                <div class="teacher-card">
+                    <img src="sulochna_mam.png" alt="Sulochana Devi">
+                    <h3>Sulochana Devi</h3>
+                    <h4>Assistant Professor</h4>
+                    <div class="teacher-details">
+                        <p>PhD (Pursuing) Mumbai University<br>
+                            M. Tech (Software Engineering) from Banasthali University, Rajasthan<br>
+                            B. Tech (Information Technology) from Kurukshetra University, Haryana
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Form -->
+    <div class="container mt-4" id="contact">
+        <div class="contact-form">
+            <h2>Contact Us</h2>
+            <form>
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" id="name" placeholder="Enter your name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number">
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea class="form-control" id="message" rows="4" placeholder="Enter your message"></textarea>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="more-info">
+                    <label class="form-check-label" for="more-info">Add more information</label>
+                </div>
+                <div class="optional-field">
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" class="form-control" id="subject" placeholder="Enter the subject">
+                    </div>
+                    <div class="form-group">
+                        <label for="attachment">Attachment</label>
+                        <input type="file" class="form-control-file" id="attachment">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function changeHeading() {
+            var heading = document.getElementById('jumbotron-heading');
+            heading.textContent = heading.textContent === 'Welcome to Our Faculty Page!' ? 'Explore Our Faculty Members!' : 'Welcome to Our Faculty Page!';
+        }
+
+        function changeTextFont() {
+            var text = document.getElementById('jumbotron-text');
+            text.style.fontFamily = text.style.fontFamily === 'Arial, sans-serif' ? 'Georgia, serif' : 'Arial, sans-serif';
+        }
+    </script>
+</body>
+
+</html>
